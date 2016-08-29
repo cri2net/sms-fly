@@ -1,0 +1,23 @@
+{
+    "name": "cri2net/php-sms-fly",
+    "type": "library",
+    "description": "PHP Library for sms-fly service",
+    "authors": [
+        {
+            "name": "Andrey Davidovich",
+            "email": "cri2net@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "php-sms-client": "^1.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "cri2net\\sms_fly\\": "src"
+        }
+    },
+    "license": "proprietary"
+}
