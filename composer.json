@@ -1,5 +1,5 @@
 {
-    "name": "cri2net/php-sms-fly",
+    "name": "cri2net/sms-fly",
     "type": "library",
     "description": "PHP Library for sms-fly service",
     "authors": [
@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "php-sms-client": "^1.0"
+        "cri2net/sms-client": "^1.0"
     },
     "require-dev": {
     },
