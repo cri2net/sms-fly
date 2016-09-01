@@ -14,7 +14,7 @@ composer require cri2net/sms-fly
 
 - **sendSMS($recipient, $text, $description = '')** — отправка sms, добавлен необязательный параметр $description, отвечающий за описании кампании отправки (не влияет на отправку, отображается в web интерфейсе sms-fly.com)
 
-- **getStateText($code)** — статический метод, который отдаёт текстовое описание статуса от шлюза ("расшифровывает" кодировки статуса у шлюза
+- **getStateText($code)** — статический метод, который отдаёт текстовое описание статуса от шлюза ("расшифровывает" кодировки статуса у шлюза)
 - **sendSmsByCron()** — отправка подготовленных sms, которые сохранены в БД
 
 ## Примеры кода
@@ -25,7 +25,7 @@ $sms = new \cri2net\sms_fly\SMS_fly($login, $password);
 $sms->alfaname = 'SMS.TEST'; // по умолчанию SMS
 
 $data = $sms->sendSMS('+380480000000', 'Привет!');
-var_damp($data); // array('campaignID' => 1111, 'status' => 'ACCEPTED')
+var_dump($data); // array('campaignID' => 1111, 'status' => 'ACCEPTED')
 ```
 
 ### Оправка из БД
