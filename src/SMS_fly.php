@@ -12,7 +12,13 @@ class SMS_fly extends AbstractSMS
      * @since 1.0.0
      */
     const API_URL = 'http://sms-fly.com/api/api.php';
-    
+
+    /**
+     * Альфаимя отправителя sms, доступное по умолчанию всем клиентам sms-fly
+     * @var string
+     * @since 1.0.1
+     */
+    public $alfaname = 'InfoCentr';
 
     /**
      * Конструктор
@@ -173,7 +179,7 @@ class SMS_fly extends AbstractSMS
             throw new \Exception("Поле table не задано");
         }
 
-        $stm = PDO_DB::prepare("SELECT * FROM `{$this->table}` WHERE processing=? AND (processing_status IS NULL OR processing_status IN ('PENDING', 'SENT'))");
+        $stm = PDO_DB::prepare("SELECT * FROM `{$this->table}` WHERE processing=? AND status IN ('complete') AND (processing_status IS NULL OR processing_status IN ('ACCEPTED', 'PENDING', 'SENT'))");
         $stm->execute([$this->getProcessingKey()]);
 
         while ($item = $stm->fetch()) {
