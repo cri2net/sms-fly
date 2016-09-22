@@ -85,6 +85,8 @@ class SMS_fly extends AbstractSMS
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_POST           => 1,
             CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT        => 15,
             CURLOPT_POSTFIELDS     => $data,
             CURLOPT_HTTPHEADER     => [
                 "Content-Type: text/xml",
