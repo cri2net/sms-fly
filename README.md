@@ -10,7 +10,7 @@ composer require cri2net/sms-fly
 
 # Использование
 ## Описание методов
-Тут приведены лишь методы, использование которых отличается от описания в пакете cri2net/sms-client (либо не описанные ранее)
+Тут приведены лишь методы, использование которых отличается от описания в пакете [cri2net/sms-client](https://packagist.org/packages/cri2net/sms-client) (либо не описанные ранее)
 
 - **sendSMS($recipient, $text, $description = '')** — отправка sms, добавлен необязательный параметр $description, отвечающий за описании кампании отправки (не влияет на отправку, отображается в web интерфейсе sms-fly.com)
 
@@ -29,9 +29,9 @@ var_dump($data); // array('campaignID' => 1111, 'status' => 'ACCEPTED')
 ```
 
 ### Оправка из БД
-Для отправки из БД нужно создать в БД таблицу, как описано в пакете cri2net/sms-client
+Для отправки из БД нужно создать в БД таблицу, как описано в пакете [cri2net/sms-client](https://packagist.org/packages/cri2net/sms-client)
 
-Также, нужно инициализировать соединение в базой через библиотеку cri2net/php-pdo-db
+Также, нужно инициализировать соединение с базой через библиотеку [cri2net/php-pdo-db](https://packagist.org/packages/cri2net/php-pdo-db)
 
 ``` php
 // сохранение sms в БД для отправки
