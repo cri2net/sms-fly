@@ -2,6 +2,7 @@
 
 namespace cri2net\sms_fly;
 
+use \Exception;
 use cri2net\sms_client\AbstractSMS;
 use cri2net\php_pdo_db\PDO_DB;
 
@@ -72,7 +73,7 @@ class SMS_fly extends AbstractSMS
     protected function sendPOST($operation, $data = '')
     {
         if (!extension_loaded('curl')) {
-            throw new \Exception('cURL extension missing');
+            throw new Exception('cURL extension missing');
         }
 
         $data = '<?xml version="1.0" encoding="utf-8"?><request>'
@@ -100,13 +101,13 @@ class SMS_fly extends AbstractSMS
         if ($response === false) {
             $error = curl_error($ch);
             curl_close($ch);
-            throw new \Exception($error);
+            throw new Exception($error);
         }
         curl_close($ch);
 
         $response = @simplexml_load_string($response);
         if (($response === false) || ($response === null)) {
-            throw new \Exception('String could not be parsed as XML');
+            throw new Exception('String could not be parsed as XML');
         }
 
         return $response;
@@ -155,7 +156,7 @@ class SMS_fly extends AbstractSMS
                 ];
 
             default:
-                throw new \Exception(self::getErrorText($code));
+                throw new Exception(self::getErrorText($code));
         }
     }
 
@@ -178,7 +179,7 @@ class SMS_fly extends AbstractSMS
     public function checkStatusByCron()
     {
         if (empty($this->table)) {
-            throw new \Exception("Поле table не задано");
+            throw new Exception("Поле table не задано");
         }
 
         $stm = PDO_DB::prepare("SELECT * FROM `{$this->table}` WHERE processing=? AND status IN ('complete') AND (processing_status IS NULL OR processing_status IN ('ACCEPTED', 'PENDING', 'SENT'))");
