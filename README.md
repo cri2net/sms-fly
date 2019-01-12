@@ -22,7 +22,7 @@ composer require cri2net/sms-fly
 ### обычная оправка
 ``` php
 $sms = new \cri2net\sms_fly\SMS_fly($login, $password);
-$sms->alfaname = 'SMS.TEST'; // по умолчанию SMS
+$sms->alfaname = 'SMS.TEST'; // по умолчанию InfoCentr
 
 $data = $sms->sendSMS('+380480000000', 'Привет!');
 var_dump($data); // array('campaignID' => 1111, 'status' => 'ACCEPTED')

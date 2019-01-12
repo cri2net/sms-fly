@@ -12,11 +12,13 @@ class SMS_fly extends AbstractSMS
      * Ссылка на API
      * @since 1.0.0
      */
-    const API_URL = 'http://sms-fly.com/api/api.php';
+    const API_URL             = 'https://sms-fly.com/api/api.php';
+    const API_URL_NO_ALFANAME = 'https://sms-fly.com/api/api.noai.php';
 
     /**
      * Альфаимя отправителя sms, доступное по умолчанию всем клиентам sms-fly
-     * @var string
+     * Установите значение в false, чтобы отправлять без альфаимени (дешевле)
+     * @var string|false
      * @since 1.0.1
      */
     public $alfaname = 'InfoCentr';
@@ -51,6 +53,9 @@ class SMS_fly extends AbstractSMS
      */
     public function getApiUrl()
     {
+        if ($this->alfaname === false) {
+            return self::API_URL_NO_ALFANAME;
+        }
         return self::API_URL;
     }
 
@@ -138,8 +143,9 @@ class SMS_fly extends AbstractSMS
         $to = $this->processPhone($to);
         $text = htmlspecialchars($text, ENT_QUOTES);
         $description = htmlspecialchars($description, ENT_QUOTES);
+        $source = ($this->alfaname === false) ? '' : 'source="' . $this->alfaname . '"';
         
-        $data = '<message start_time="AUTO" end_time="AUTO" livetime="24" rate="120" desc="' . $description . '" source="' . $this->alfaname . '">';
+        $data = '<message start_time="AUTO" end_time="AUTO" livetime="24" rate="120" desc="' . $description . '" ' . $source . '>';
         $data .= "<body>" . $text . "</body>";
         $data .= "<recipient>" . $to . "</recipient>";
         $data .= "</message>";
@@ -182,7 +188,7 @@ class SMS_fly extends AbstractSMS
             throw new Exception("Поле table не задано");
         }
 
-        $stm = PDO_DB::prepare("SELECT * FROM `{$this->table}` WHERE processing=? AND status IN ('complete') AND (processing_status IS NULL OR processing_status IN ('ACCEPTED', 'PENDING', 'SENT'))");
+        $stm = PDO_DB::prepare("SELECT * FROM {$this->table} WHERE processing=? AND status IN ('complete') AND (processing_status IS NULL OR processing_status IN ('ACCEPTED', 'PENDING', 'SENT'))");
         $stm->execute([$this->getProcessingKey()]);
 
         while ($item = $stm->fetch()) {
