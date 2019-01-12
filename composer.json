@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^5.4|7.0",
+        "php": "^5.4|^7.0",
         "cri2net/sms-client": "^1.0"
     },
     "require-dev": {
