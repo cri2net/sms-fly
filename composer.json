@@ -19,5 +19,5 @@
             "cri2net\\sms_fly\\": "src"
         }
     },
-    "license": "proprietary"
+    "license": "MIT"
 }

@@ -21,6 +21,8 @@ composer require cri2net/sms-fly
 
 ### обычная оправка
 ``` php
+<?php
+
 $sms = new \cri2net\sms_fly\SMS_fly($login, $password);
 $sms->alfaname = 'SMS.TEST'; // по умолчанию InfoCentr
 
@@ -34,6 +36,8 @@ var_dump($data); // array('campaignID' => 1111, 'status' => 'ACCEPTED')
 Также, нужно инициализировать соединение с базой через библиотеку [cri2net/php-pdo-db](https://packagist.org/packages/cri2net/php-pdo-db)
 
 ``` php
+<?php
+
 // сохранение sms в БД для отправки
 $arr = [
     'to'               => '+380480000000',
@@ -41,7 +45,7 @@ $arr = [
     'updated_at'       => microtime(true),
     'min_sending_time' => microtime(true), // отправка прямо сейчас, но можно указать время в будущем для отложенной отправки
     'replace_data'     => json_encode([
-        'username'     => 'Джон', // массив с правилами замен
+        'username'     => 'John', // массив с правилами замен
     ]),
     'raw_text'         => 'Привет, {{username}}!', // переменные в тексте следует обрамлять в двойные фигурный кавычки
 ];
@@ -60,6 +64,8 @@ $sms->checkStatusByCron();
 
 Поле processing по умолчанию NULL. В этом случае sms попробует отправить любой доступный шлюз, а после отправки заполнит это поле своим ключём. Но можно указать это поле при вставке в БД, и тогда sms сможет отправить только один конкретный шлюз.
 ``` php
+<?php
+
 $arr = [
     // ...
     'processing' => $sms->getProcessingKey(),
