@@ -2,7 +2,7 @@
 
 namespace cri2net\sms_fly;
 
-use \Exception;
+use Exception;
 use cri2net\sms_client\AbstractSMS;
 use cri2net\php_pdo_db\PDO_DB;
 
@@ -21,7 +21,7 @@ class SMS_fly extends AbstractSMS
      * @var string|false
      * @since 1.0.1
      */
-    public $alfaname = 'InfoCentr';
+    public $alfaname = 'InfoCenter';
 
     /**
      * Конструктор
@@ -145,7 +145,7 @@ class SMS_fly extends AbstractSMS
         $description = htmlspecialchars($description, ENT_QUOTES);
         $source = ($this->alfaname === false) ? '' : 'source="' . $this->alfaname . '"';
         
-        $data = '<message start_time="AUTO" end_time="AUTO" livetime="24" rate="120" desc="' . $description . '" ' . $source . '>';
+        $data = '<message start_time="AUTO" end_time="AUTO" lifetime="24" rate="120" desc="' . $description . '" ' . $source . '>';
         $data .= "<body>" . $text . "</body>";
         $data .= "<recipient>" . $to . "</recipient>";
         $data .= "</message>";
@@ -222,7 +222,7 @@ class SMS_fly extends AbstractSMS
             case 'ERRPHONES':    return 'Неверно задан номер получателя';
             case 'ERRSTARTTIME': return 'Не корректное время начала отправки';
             case 'ERRENDTIME':   return 'Не корректное время окончания рассылки';
-            case 'ERRLIVETIME':  return 'Не корректное время жизни сообщения';
+            case 'ERRLIFETIME':  return 'Не корректное время жизни сообщения';
             case 'ERRSPEED':     return 'Не корректная скорость отправки сообщений';
             case 'ERRALFANAME':  return 'Данное альфанумерическое имя использовать запрещено, либо ошибка';
             case 'ERRTEXT':      return 'Некорректный текст сообщения';
