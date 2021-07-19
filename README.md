@@ -24,9 +24,9 @@ composer require cri2net/sms-fly
 <?php
 
 $sms = new \cri2net\sms_fly\SMS_fly($login, $password);
-$sms->alfaname = 'SMS.TEST'; // по умолчанию InfoCentr
+$sms->alfaname = 'SMS.TEST'; // by default InfoCenter
 
-$data = $sms->sendSMS('+380480000000', 'Привет!');
+$data = $sms->sendSMS('+380480000000', 'Hello!');
 var_dump($data); // array('campaignID' => 1111, 'status' => 'ACCEPTED')
 ```
 
